@@ -1,0 +1,7 @@
+<!-- save as public/favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none" role="img" aria-label="Image Converter favicon">
+  <title>Image Converter</title>
+  <rect x="32" y="48" width="192" height="160" rx="20" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" />
+  <circle cx="160" cy="108" r="28" stroke="#ffffff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M32 176L88 128L136 168L168 144L224 184" stroke="#ffffff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
