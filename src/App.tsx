@@ -31,6 +31,7 @@ function stripExtension(name: string | null) {
 }
 
 export default function ImageConverterApp() {
+  const previewObjRef = useRef<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const [originalUrl, setOriginalUrl] = useState<string | null>(null);
@@ -48,9 +49,9 @@ export default function ImageConverterApp() {
   );
 
   function resetState() {
-    if (previewUrl) URL.revokeObjectURL(previewUrl);
-    if (originalUrl && originalUrl !== previewUrl) {
-      URL.revokeObjectURL(originalUrl);
+    if (previewObjRef.current) {
+      URL.revokeObjectURL(previewObjRef.current);
+      previewObjRef.current = null;
     }
     setPreviewUrl(null);
     setDownloadName(null);
@@ -67,9 +68,14 @@ export default function ImageConverterApp() {
       const file = e.target.files?.[0];
       if (!file) return;
 
-      // cria preview rápido via objectURL (bom para mostrar)
+      if (previewObjRef.current) {
+        URL.revokeObjectURL(previewObjRef.current);
+        previewObjRef.current = null;
+      }
+
       if (file.type.startsWith("image/")) {
         const preview = URL.createObjectURL(file);
+        previewObjRef.current = preview;
         setPreviewUrl(preview);
       }
 
@@ -80,7 +86,7 @@ export default function ImageConverterApp() {
       reader.onload = () => {
         const result = reader.result as string | null;
         if (result) {
-          setOriginalUrl(result); 
+          setOriginalUrl(result);
         }
       };
       reader.readAsDataURL(file);
@@ -132,8 +138,6 @@ export default function ImageConverterApp() {
         reader.readAsDataURL(blob);
       } else {
         const ext = format.split("/")[1];
-        console.log("`${baseName}.${ext}`", `${baseName}.${ext}`);
-
         saveAs(blob, `${baseName}.${ext}`);
         setProgress(100);
       }
@@ -170,12 +174,14 @@ export default function ImageConverterApp() {
     ctx.rotate((rotation * Math.PI) / 180);
     ctx.translate(-width / 2, -height / 2);
 
-    // desenha a parte cortada da imagem original no canvas
     ctx.drawImage(image, x, y, width, height, 0, 0, width, height);
 
     const editedUrl = canvas.toDataURL();
 
-    // atualiza apenas preview (mantém originalUrl para próximas edições)
+    if (previewObjRef.current) {
+      URL.revokeObjectURL(previewObjRef.current);
+      previewObjRef.current = null;
+    }
     setPreviewUrl(editedUrl);
     setEditing(false);
   };
@@ -188,11 +194,12 @@ export default function ImageConverterApp() {
 
   useEffect(() => {
     return () => {
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
-      if (originalUrl && originalUrl !== previewUrl)
-        URL.revokeObjectURL(originalUrl);
+      if (previewObjRef.current) {
+        URL.revokeObjectURL(previewObjRef.current);
+        previewObjRef.current = null;
+      }
     };
-  }, [previewUrl, originalUrl]);
+  }, []);
 
   return (
     <div className="page-root" style={cssVars}>
@@ -235,7 +242,7 @@ export default function ImageConverterApp() {
                   marginTop: 4,
                 }}
               >
-                Converta imagens entre PNG/JPG/WEBP
+                Converta imagens entre PNG/JPG/WEBP.
               </p>
             </div>
           </div>
