@@ -235,7 +235,7 @@ export default function ImageConverterApp() {
                   marginTop: 4,
                 }}
               >
-                Converta imagens entre PNG/JPG/WEBP com crop, rotação e flip.
+                Converta imagens entre PNG/JPG/WEBP
               </p>
             </div>
           </div>
