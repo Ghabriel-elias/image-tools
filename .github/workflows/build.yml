@@ -21,14 +21,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (with Yarn cache)
+      - name: Setup Node.js (with Yarn cache) — use Node 20.19.0 to satisfy plugin engines
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20.19.0"
           cache: "yarn"
 
       - name: Install dependencies (Yarn)
-        # Use --frozen-lockfile for consistency. If you use Yarn v2+ (Berry), consider using `yarn install --immutable`.
         run: yarn install --frozen-lockfile
 
       - name: Build (Vite)
