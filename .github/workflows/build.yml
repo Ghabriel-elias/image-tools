@@ -21,18 +21,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js (with Yarn cache)
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "npm"
+          cache: "yarn"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (Yarn)
+        # Use --frozen-lockfile for consistency. If you use Yarn v2+ (Berry), consider using `yarn install --immutable`.
+        run: yarn install --frozen-lockfile
 
       - name: Build (Vite)
-        run: npm run build
-        # certifique-se que `npm run build` produz a pasta `dist`
+        run: yarn build
+        # certifique-se que `yarn build` produz a pasta `dist`
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
