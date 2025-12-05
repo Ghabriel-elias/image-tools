@@ -1,26 +1,32 @@
 # 📸 Image Converter — React App
 
-Uma aplicação moderna, animada e responsiva para conversão e edição simples de imagens.
-Construída com **React + TypeScript**, **Framer Motion** e **Canvas API**.
+A modern, animated and responsive application for simple image conversion and editing.  
+Built with **React + TypeScript**, **Framer Motion** and the **Canvas API**.
 
-## 🚀 Recursos
+## 📸 Screenshots
 
-- Upload via botão **ou arrastar & soltar**
-- Conversão para:
+<img width="1003" height="643" alt="image" src="https://github.com/user-attachments/assets/04e48738-62c9-43f3-95bb-4f2b4dd80573" />
+<img width="974" height="735" alt="image" src="https://github.com/user-attachments/assets/f546e3b2-e5ab-491d-8714-b1bd6f59c3a6" />
+<img width="949" height="690" alt="image" src="https://github.com/user-attachments/assets/2943cf91-db87-45a2-9578-e9e68bb1fa18" />
+
+## 🚀 Features
+
+- Upload via button **or drag & drop**
+- Convert to:
   - **PNG**
   - **JPG**
   - **WEBP**
-  - **Base64** (exportado como `.txt`)
-- Pré-visualização em tempo real
-- Editor integrado com:
-  - Caixa de corte arrastável e redimensionável
-  - Rotação
-  - Flip (se implementado no seu código)
-- Layout totalmente responsivo
-- Animações suaves (Framer Motion)
-- Tema customizado com variáveis CSS
+  - **Base64** (exported as `.txt`)
+- Real-time preview
+- Integrated editor with:
+  - Draggable & resizable crop box
+  - Rotation
+  - Flip (if implemented in your code)
+- Fully responsive layout
+- Smooth animations (Framer Motion)
+- Custom theme using CSS variables
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
 - **React + TypeScript**
 - **Framer Motion**
