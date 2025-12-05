@@ -20,8 +20,6 @@ Construída com **React + TypeScript**, **Framer Motion** e **Canvas API**.
 - Animações suaves (Framer Motion)
 - Tema customizado com variáveis CSS
 
----
-
 ## 🛠️ Tecnologias Utilizadas
 
 - **React + TypeScript**
